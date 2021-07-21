@@ -1,7 +1,9 @@
 package OOPTasks;
 //package ru.skillbench.tasks.basics.math;
 
-public class ArrayVectorImpl implements ArrayVector{
+import java.util.Arrays;
+
+public class ArrayVectorImpl implements ArrayVector {
 
     /**
      * Хранящий все данные о векторе массив.
@@ -24,6 +26,7 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Возвращает все элементы вектора. Массив не клонируется.
+     *
      * @param elements Не равен null
      */
     @Override
@@ -34,6 +37,7 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Возвращает все элементы вектора. Массив не клонируется.
+     *
      * @return Все элементы вектора.
      */
     @Override
@@ -43,6 +47,7 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Возвращает копию вектора (такую, изменение элементов в которой не приводит к изменению элементов данного вектора).
+     *
      * @return Копия вектора.
      */
     @Override
@@ -64,6 +69,7 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Изменяет элемент по индексу.
+     *
      * @param index В случае выхода индекса за пределы массива:<br/>
      *              а) если index<0, ничего не происходит;<br/>
      * @param value Значение, на которое надо изменить.
@@ -72,10 +78,15 @@ public class ArrayVectorImpl implements ArrayVector{
     public void set(int index, double value) {
         if (index >= 0 && index < array.length)
             array[index] = value;
+        if (index >= array.length) {
+            array = Arrays.copyOf(array, index + 1);
+            array[index] = value;
+        }
     }
 
     /**
      * Возвращает элемент по индексу.
+     *
      * @param index В случае выхода индекса за пределы массива
      * @return Элемент по индексу.
      * @throws ArrayIndexOutOfBoundsException
@@ -89,12 +100,13 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Возвращает максимальный элемент вектора.
+     *
      * @return Максимальный элемент вектора
      */
     @Override
     public double getMax() {
         double max = Double.MIN_VALUE;
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             if (array[i] > max)
                 max = array[i];
         }
@@ -103,12 +115,13 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Возвращает минимальный элемент вектора.
+     *
      * @return Минимальный элемент вектора
      */
     @Override
     public double getMin() {
         double min = Double.MAX_VALUE;
-        for (int i = 0; i < array.length; i++){
+        for (int i = 0; i < array.length; i++) {
             if (array[i] < min)
                 min = array[i];
         }
@@ -128,9 +141,10 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Метод сортировки, использующий способ quick sort.
+     *
      * @param array Массив
-     * @param low Нижняя граница.
-     * @param high Верхняя граница.
+     * @param low   Нижняя граница.
+     * @param high  Верхняя граница.
      */
     public static void quickSort(double[] array, int low, int high) {
         if (array.length == 0)
@@ -167,38 +181,41 @@ public class ArrayVectorImpl implements ArrayVector{
 
     /**
      * Умножает вектор на число.
+     *
      * @param factor Число, на которое надо умножать.
      */
     @Override
     public void mult(double factor) {
-        for (int i = 0; i < array.length; i++){
-            array[i]*= factor;
+        for (int i = 0; i < array.length; i++) {
+            array[i] *= factor;
         }
     }
 
     /**
      * Складывает вектор с другим вектором, результат запоминает в элементах данного вектора.
+     *
      * @param anotherVector Не равен null
      * @return
      */
     @Override
     public ArrayVector sum(ArrayVector anotherVector) {
-        for (int i = 0; i < anotherVector.getSize(); i++){
-            array[i]+= anotherVector.get(i);
+        for (int i = 0; i < anotherVector.getSize(); i++) {
+            array[i] += anotherVector.get(i);
         }
         return this;
     }
 
     /**
      * Возвращает скалярное произведение двух векторов.
+     *
      * @param anotherVector Не равен null
      * @return Скалярное произведение двух векторов
      */
     @Override
     public double scalarMult(ArrayVector anotherVector) {
         double temp = 0;
-        for (int i = 0; i < anotherVector.getSize(); i++){
-            temp += array[i]*anotherVector.get(i);
+        for (int i = 0; i < anotherVector.getSize(); i++) {
+            temp += array[i] * anotherVector.get(i);
         }
         return temp;
     }
@@ -206,6 +223,7 @@ public class ArrayVectorImpl implements ArrayVector{
     /**
      * Возвращает евклидову норму вектора (длину вектора
      * в n-мерном евклидовом пространстве
+     *
      * @return Евклидову норму вектора.
      */
     @Override
