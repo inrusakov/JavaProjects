@@ -58,6 +58,6 @@ class BinaryTreeTest {
         myTree.insert(3);
         myTree.insert(2);
 
-        Assertions.assertEquals(7, myTree.getNumber());
+        Assertions.assertEquals(7, myTree.getSize());
     }
 }

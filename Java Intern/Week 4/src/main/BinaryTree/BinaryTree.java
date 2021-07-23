@@ -1,8 +1,5 @@
 package BinaryTree;
 
-import java.util.LinkedList;
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class BinaryTree<T extends Comparable<T>>{
     private Node root;
     private Integer counter = 0;
@@ -43,6 +40,9 @@ public class BinaryTree<T extends Comparable<T>>{
         }
     }
 
+    /**
+     * Метод обертка для запуска обхода дерева.
+     */
     public void inOrderTravel(){
         inOrder(this.root);
     }
@@ -58,6 +58,9 @@ public class BinaryTree<T extends Comparable<T>>{
         inOrder(node.getRight());
     }
 
+    /**
+     * Метод обертка для запуска обхода дерева.
+     */
     public void preOrderTravel(){
         preOrder(this.root);
     }
@@ -73,6 +76,9 @@ public class BinaryTree<T extends Comparable<T>>{
         inOrder(node.getRight());
     }
 
+    /**
+     * Метод обертка для запуска обхода дерева.
+     */
     public void postOrderTravel(){
         postOrder(this.root);
     }
@@ -92,12 +98,15 @@ public class BinaryTree<T extends Comparable<T>>{
      * Подсчет количества узлов дерева.
      * @return Количество значений в дереве
      */
-    public int getNumber() {
+    public int getSize() {
         counter = 0;
         counter(root);
         return counter;
     }
 
+    /**
+     * Метод обертка для запуска подсчета нод дерева.
+     */
     private void counter(Node node){
         if(node == null) return;
         counter(node.getLeft());

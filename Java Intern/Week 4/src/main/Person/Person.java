@@ -6,6 +6,12 @@ import java.util.Date;
 
 public class Person {
     private Date dateOfBirth;
+
+    /**
+     * @param year Год рождения.
+     * @param month Месяц.
+     * @param day День.
+     */
     public Person(int year,int month, int day){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR,year);
@@ -14,6 +20,11 @@ public class Person {
         dateOfBirth = calendar.getTime();
     }
 
+    /**
+     * Метод toString.
+     * @param type Тип форматирования.
+     * @return String с данными.
+     */
     public String toString(DateType type){
         SimpleDateFormat formatter;
         switch (type){
