@@ -35,11 +35,23 @@ public class MainController {
     }
 
     @GetMapping("/generate")
-    public String registration() {
+    public String generate() {
         User n = new User();
         n.setName("random");
         n.setEmail("random@mail.ru");
         userRepository.save(n);
         return "hello";
+    }
+
+    @GetMapping("/registration")
+    public String registration() {
+        return "registration";
+    }
+
+    @PostMapping("/registration")
+    public String addUser(User user, Map<String, Object> model) {
+        userRepository.save(user);
+
+        return "redirect:/registration";
     }
 }
